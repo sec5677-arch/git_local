@@ -1,0 +1,8 @@
+{
+  "input_dir": "",
+  "output_dir": "",
+  "language": "kor+eng",
+  "merge_text": true,
+  "recursive": false,
+  "preprocess": true
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="신동혁 - 웹 개발과 UX에 관심이 많은 IT 개발자 포트폴리오" />
+  <title>신동혁혁 | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 상단 고정 내비게이션: 섹션으로 빠르게 이동 -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#hero" class="nav-logo">&lt;DH /&gt;</a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 히어로: 첫인상과 한 줄 소개 -->
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="container hero-content">
+        <p class="hero-greeting">안녕하세요 👋</p>
+        <h1 class="hero-title">
+          저는 <span class="highlight">신동혁</span>입니다
+        </h1>
+        <p class="hero-desc">
+          웹 개발과 사용자 경험(UX)에 관심이 많은 개발자입니다.<br />
+          문제를 해결하고, 사람들에게 도움이 되는 서비스를 만드는 것을 좋아합니다.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+          <a href="#contact" class="btn btn-outline">연락하기</a>
+        </div>
+        <a href="#about" class="scroll-hint" aria-label="아래로 스크롤">
+          <span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-number">01</span>
+          About Me
+        </h2>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-avatar" aria-hidden="true">DH</div>
+            <ul class="about-list">
+              <li>
+                <span class="label">이름</span>
+                <span class="value">신동혁</span>
+              </li>
+              <li>
+                <span class="label">직업</span>
+                <span class="value">IT 개발자</span>
+              </li>
+              <li>
+                <span class="label">위치</span>
+                <span class="value">대한민국 🇰🇷</span>
+              </li>
+            </ul>
+          </div>
+          <div class="about-interests">
+            <h3>관심 분야</h3>
+            <div class="tag-list">
+              <span class="tag">웹 개발</span>
+              <span class="tag">UI/UX 디자인</span>
+              <span class="tag">인공지능</span>
+              <span class="tag">생산성 도구</span>
+            </div>
+            <blockquote class="motto">
+              <p>꾸준한 학습과 실행이 최고의 성장 전략이다.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-number">02</span>
+          Skills
+        </h2>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <h3>Frontend</h3>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>TypeScript</li>
+              <li>React</li>
+            </ul>
+          </article>
+          <article class="skill-card">
+            <div class="skill-icon">⚙️</div>
+            <h3>Backend</h3>
+            <ul>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>REST API</li>
+            </ul>
+          </article>
+          <article class="skill-card">
+            <div class="skill-icon">🛠️</div>
+            <h3>Tools</h3>
+            <ul>
+              <li>Git &amp; GitHub</li>
+              <li>Figma</li>
+              <li>VS Code</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-number">03</span>
+          Projects
+        </h2>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-number">01</div>
+            <h3>Portfolio Website</h3>
+            <p>개인 포트폴리오 및 프로젝트를 소개하는 웹사이트</p>
+            <span class="project-tag">HTML · CSS · JavaScript</span>
+          </article>
+          <article class="project-card">
+            <div class="project-number">02</div>
+            <h3>Task Manager</h3>
+            <p>일정 관리와 생산성 향상을 위한 웹 애플리케이션</p>
+            <span class="project-tag">React · Node.js</span>
+          </article>
+          <article class="project-card">
+            <div class="project-number">03</div>
+            <h3>AI Chat Service</h3>
+            <p>AI 기반 대화형 서비스 개발 프로젝트</p>
+            <span class="project-tag">AI · REST API</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section section-alt" id="experience">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-number">04</span>
+          Experience
+        </h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <time>2023 ~ 현재</time>
+              <h3>프론트엔드 개발</h3>
+              <p>사용자 중심의 웹 인터페이스를 설계하고 구현합니다.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <time>2022 ~ 2023</time>
+              <h3>웹 프로젝트 프리랜서</h3>
+              <p>다양한 클라이언트의 웹 프로젝트를 기획부터 배포까지 진행했습니다.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <time>2021 ~ 2022</time>
+              <h3>개발 학습 및 개인 프로젝트</h3>
+              <p>기초부터 차근차근 학습하며 실습 프로젝트를 쌓아갔습니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="section-number">05</span>
+          Contact
+        </h2>
+        <p class="contact-intro">프로젝트 협업이나 궁금한 점이 있으시면 편하게 연락해 주세요.</p>
+        <div class="contact-grid">
+          <a href="mailto:hello@example.com" class="contact-card">
+            <span class="contact-icon">✉️</span>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@example.com</span>
+          </a>
+          <a href="https://github.com/username" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-icon">💻</span>
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/username</span>
+          </a>
+          <a href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer" class="contact-card">
+            <span class="contact-icon">🔗</span>
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/username</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 신동혁. Made with ❤️</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

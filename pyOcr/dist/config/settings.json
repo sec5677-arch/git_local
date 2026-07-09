@@ -1,0 +1,8 @@
+{
+  "input_dir": "F:/다운로드/AAA",
+  "output_dir": "c:\\git_local\\pyOcr\\dist\\output",
+  "language": "kor",
+  "merge_text": false,
+  "recursive": false,
+  "preprocess": true
+}
