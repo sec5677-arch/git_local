@@ -1,0 +1,14 @@
+const eslintConfig = {
+  extends: ['next/core-web-vitals', 'next/typescript'],
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
+  },
+}
+
+export default eslintConfig
