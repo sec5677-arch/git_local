@@ -1,20 +1,19 @@
 import { config } from 'dotenv';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import pg from 'pg';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import { tickets } from '../../src/server/db/schema';
 
 // .env.local 에서 연결 문자열 로드
 config({ path: '.env.local' });
 
-const connectionString =
-  process.env.POSTGRES_URL ?? process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error('POSTGRES_URL 또는 DATABASE_URL이 .env.local에 없습니다.');
+  throw new Error('DATABASE_URL이 .env.local에 없습니다.');
 }
 
-const pool = new pg.Pool({ connectionString });
-const db = drizzle(pool, { schema: { tickets } });
+const client = postgres(connectionString);
+const db = drizzle(client, { schema: { tickets } });
 
 type SeedTicket = typeof tickets.$inferInsert;
 
@@ -97,7 +96,7 @@ async function main() {
   console.log(`Seeding ${seedTickets.length} tickets...`);
   await db.insert(tickets).values(seedTickets);
   console.log('Done.');
-  await pool.end();
+  await client.end();
 }
 
 main().catch((e) => {
