@@ -2,11 +2,15 @@ import { render, screen } from '@testing-library/react';
 import type { TicketWithOverdue } from '@/shared/types/ticket';
 
 const mockUseDroppable = jest.fn();
+const mockSortableContext = jest.fn();
 jest.mock('@dnd-kit/core', () => ({
   useDroppable: (...args: unknown[]) => mockUseDroppable(...args),
 }));
 jest.mock('@dnd-kit/sortable', () => ({
-  SortableContext: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  SortableContext: ({ items, children }: { items: number[]; children: React.ReactNode }) => {
+    mockSortableContext(items);
+    return <>{children}</>;
+  },
   verticalListSortingStrategy: 'vertical',
   useSortable: () => ({
     attributes: {},
@@ -100,5 +104,21 @@ describe('Column', () => {
       <Column status="TODO" tickets={[]} onTicketClick={jest.fn()} />
     );
     expect(container.querySelector('.column')).toHaveAttribute('data-status', 'TODO');
+  });
+
+  it('SortableContext의 items가 tickets.map(t => t.id)와 일치한다', () => {
+    render(
+      <Column
+        status="TODO"
+        tickets={[ticket({ id: 3 }), ticket({ id: 1 }), ticket({ id: 2 })]}
+        onTicketClick={jest.fn()}
+      />
+    );
+    expect(mockSortableContext).toHaveBeenCalledWith([3, 1, 2]);
+  });
+
+  it('tickets가 빈 배열이어도 SortableContext에 빈 items가 전달된다', () => {
+    render(<Column status="DONE" tickets={[]} onTicketClick={jest.fn()} />);
+    expect(mockSortableContext).toHaveBeenCalledWith([]);
   });
 });

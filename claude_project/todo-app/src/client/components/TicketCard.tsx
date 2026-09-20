@@ -34,13 +34,17 @@ export function TicketCard({
       style={style}
       {...attributes}
       {...listeners}
+      {...(ticket.isOverdue ? { 'data-overdue': 'true' } : {})}
       role="button"
       tabIndex={0}
       className={classNames}
       aria-label={`티켓: ${ticket.title}`}
       onClick={onClick}
       onKeyDown={(event) => {
-        if (event.key === 'Enter') onClick();
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onClick();
+        }
       }}
     >
       <p className="ticket-card-title">{ticket.title}</p>

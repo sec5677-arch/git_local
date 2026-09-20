@@ -1,0 +1,87 @@
+{
+  "colorSystem": {
+    "version": "1.1.0",
+    "mode": "light",
+    "note": "Canonical color reference for Tika. Every value here is bit-for-bit identical to a Tailwind CSS default palette color (see the 'tailwind' field) — app/globals.css applies these as plain Tailwind utility classes (e.g. bg-slate-50, text-slate-900) rather than duplicating them as separate CSS variables, except for the semantic aliases (priority-*, overdue, column-*) which stay as named @theme tokens so component code can read intent instead of a raw hex.",
+    "semantic": {
+      "primary": {
+        "value": "#2563EB",
+        "tailwind": "blue-600",
+        "hover": "#1D4ED8",
+        "light": "#EFF6FF"
+      },
+      "danger": {
+        "value": "#DC2626",
+        "tailwind": "red-600",
+        "hover": "#B91C1C",
+        "light": "#FEF2F2"
+      },
+      "success": {
+        "value": "#16A34A",
+        "tailwind": "green-600",
+        "hover": "#15803D",
+        "light": "#F0FDF4"
+      },
+      "warning": {
+        "value": "#D97706",
+        "tailwind": "amber-600",
+        "hover": "#B45309",
+        "light": "#FFFBEB"
+      },
+      "info": {
+        "value": "#0284C7",
+        "tailwind": "sky-600",
+        "hover": "#0369A1",
+        "light": "#F0F9FF"
+      }
+    },
+    "background": {
+      "app": "#F8FAFC",
+      "sidebar": "#FFFFFF",
+      "board": "#F1F5F9",
+      "column": "rgba(241, 245, 249, 0.7)",
+      "card": "#FFFFFF",
+      "cardHover": "#F8FAFC",
+      "overlay": "rgba(15, 23, 42, 0.5)"
+    },
+    "text": {
+      "primary": "#0F172A",
+      "secondary": "#475569",
+      "tertiary": "#94A3B8",
+      "disabled": "#CBD5E1",
+      "inverse": "#FFFFFF"
+    },
+    "border": {
+      "subtle": "#E2E8F0",
+      "default": "#CBD5E1",
+      "focused": "#2563EB",
+      "danger": "#FCA5A5"
+    },
+    "boardStatus": {
+      "todo": {
+        "badgeBg": "#E0F2FE",
+        "badgeText": "#0369A1"
+      },
+      "inProgress": {
+        "badgeBg": "#FEF3C7",
+        "badgeText": "#B45309"
+      },
+      "done": {
+        "badgeBg": "#DCFCE7",
+        "badgeText": "#15803D"
+      }
+    },
+    "swimlane": {
+      "_comment": "4개 컬럼(Backlog/TODO/In Progress/Done)의 배경색 — 서로 구분되면서도 눈에 편안한 저채도 파스텔톤. 각 상태의 accent 색상(semantic.*)과 같은 색상군의 light 톤을 사용해 헤더 강조선과 배경이 자연스럽게 이어지도록 한다.",
+      "backlog": { "background": "#F1F5F9", "tailwind": "slate-100", "accent": "#94A3B8" },
+      "todo": { "background": "#FFFBEB", "tailwind": "amber-50", "accent": "#D97706" },
+      "inProgress": { "background": "#EFF6FF", "tailwind": "blue-50", "accent": "#2563EB" },
+      "done": { "background": "#F0FDF4", "tailwind": "green-50", "accent": "#16A34A" }
+    },
+    "typography": {
+      "_comment": "사이트 전역 2단계 타입 시스템",
+      "title": { "size": "14px", "weight": 700, "usage": "컬럼 제목, 카드 제목, 모달 제목, 브랜드 타이틀" },
+      "content": { "size": "12px", "weight": 400, "usage": "본문, 라벨, 뱃지, input/textarea/select 값" }
+    }
+  }
+}

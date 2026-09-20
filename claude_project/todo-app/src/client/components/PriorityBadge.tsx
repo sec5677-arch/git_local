@@ -14,5 +14,9 @@ const PRIORITY_LABEL: Record<TicketPriority, string> = {
 };
 
 export function PriorityBadge({ priority }: { priority: TicketPriority }) {
-  return <Badge variant={PRIORITY_VARIANT[priority]}>{PRIORITY_LABEL[priority]}</Badge>;
+  return (
+    <Badge variant={PRIORITY_VARIANT[priority]} data-priority={priority}>
+      {PRIORITY_LABEL[priority]}
+    </Badge>
+  );
 }

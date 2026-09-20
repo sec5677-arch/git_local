@@ -56,9 +56,11 @@ describe('TicketCard', () => {
     expect(screen.getByText('2026-12-31')).toBeInTheDocument();
   });
 
-  it('C001-2: isOverdue=true면 ticket-card--overdue 스타일이 적용된다', () => {
+  it('C001-2: isOverdue=true면 data-overdue 속성과 ticket-card--overdue 클래스가 적용된다', () => {
     render(<TicketCard ticket={ticket({ isOverdue: true })} onClick={jest.fn()} />);
-    expect(screen.getByRole('button')).toHaveClass('ticket-card--overdue');
+    const card = screen.getByRole('button');
+    expect(card).toHaveAttribute('data-overdue', 'true');
+    expect(card).toHaveClass('ticket-card--overdue');
   });
 
   it('C001-3: status=DONE이면 완료 스타일이 적용된다', () => {
@@ -87,9 +89,9 @@ describe('TicketCard', () => {
     ['LOW', '낮음'],
     ['MEDIUM', '보통'],
     ['HIGH', '높음'],
-  ] as const)('C001-7: priority=%s면 "%s" 뱃지가 표시된다', (priority, label) => {
+  ] as const)('C001-7: priority=%s면 "%s" 뱃지에 data-priority="%s" 속성이 표시된다', (priority, label) => {
     render(<TicketCard ticket={ticket({ priority })} onClick={jest.fn()} />);
-    expect(screen.getByText(label)).toBeInTheDocument();
+    expect(screen.getByText(label)).toHaveAttribute('data-priority', priority);
   });
 
   it('접근성: role=button, aria-label="티켓: {title}"이 설정된다', () => {

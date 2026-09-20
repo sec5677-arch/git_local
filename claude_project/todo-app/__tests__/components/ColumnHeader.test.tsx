@@ -16,4 +16,10 @@ describe('ColumnHeader', () => {
     render(<ColumnHeader title="Done" count={0} />);
     expect(screen.getByText('0')).toBeInTheDocument();
   });
+
+  it('title은 column-title, count는 column-count 클래스로 표시된다', () => {
+    render(<ColumnHeader title="TODO" count={3} />);
+    expect(screen.getByText('TODO')).toHaveClass('column-title');
+    expect(screen.getByText('3')).toHaveClass('column-count');
+  });
 });
