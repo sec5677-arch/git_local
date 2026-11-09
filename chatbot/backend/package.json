@@ -8,6 +8,7 @@
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:integration": "ts-node tests/integration/bedrock.integration.ts",
+		"test:integration:stream": "ts-node tests/integration/stream.integration.ts",
 		"build": "tsc",
 		"start": "node dist/server.js"
 	},
