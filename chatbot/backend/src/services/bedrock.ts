@@ -60,22 +60,15 @@ export class BedrockService {
 	}
 
 	async converse(request: ConversationRequest): Promise<ConversationResponse> {
-		try {
-			const response = await this.client.send(
-				new ConverseCommand(this.buildInput(request.messages, request)),
-			);
+		const response = await this.withErrorTranslation(() =>
+			this.client.send(new ConverseCommand(this.buildInput(request.messages, request))),
+		);
 
-			return {
-				content: this.fromAwsContent(response.output?.message?.content),
-				stopReason: response.stopReason ?? "",
-				usage: {
-					inputTokens: response.usage?.inputTokens ?? 0,
-					outputTokens: response.usage?.outputTokens ?? 0,
-				},
-			};
-		} catch (error) {
-			throw this.toServiceError(error);
-		}
+		return {
+			content: this.fromAwsContent(response.output?.message?.content),
+			stopReason: response.stopReason ?? "",
+			usage: this.toUsage(response.usage),
+		};
 	}
 
 	async *converseStream(request: ConversationRequest): AsyncGenerator<StreamEvent> {
@@ -84,12 +77,12 @@ export class BedrockService {
 		while (true) {
 			let stream;
 			try {
-				const response = await this.client.send(
-					new ConverseStreamCommand(this.buildInput(messages, request)),
+				const response = await this.withErrorTranslation(() =>
+					this.client.send(new ConverseStreamCommand(this.buildInput(messages, request))),
 				);
 				stream = response.stream;
 			} catch (error) {
-				yield { type: "error", error: this.toServiceError(error).message };
+				yield { type: "error", error: (error as Error).message };
 				return;
 			}
 
@@ -132,10 +125,7 @@ export class BedrockService {
 				}
 
 				if (event.metadata?.usage) {
-					usage = {
-						inputTokens: event.metadata.usage.inputTokens ?? 0,
-						outputTokens: event.metadata.usage.outputTokens ?? 0,
-					};
+					usage = this.toUsage(event.metadata.usage);
 				}
 			}
 
@@ -221,6 +211,24 @@ export class BedrockService {
 			}
 			return {};
 		});
+	}
+
+	private async withErrorTranslation<T>(operation: () => Promise<T>): Promise<T> {
+		try {
+			return await operation();
+		} catch (error) {
+			throw this.toServiceError(error);
+		}
+	}
+
+	private toUsage(usage?: {
+		inputTokens?: number;
+		outputTokens?: number;
+	}): { inputTokens: number; outputTokens: number } {
+		return {
+			inputTokens: usage?.inputTokens ?? 0,
+			outputTokens: usage?.outputTokens ?? 0,
+		};
 	}
 
 	private toServiceError(error: unknown): Error {
